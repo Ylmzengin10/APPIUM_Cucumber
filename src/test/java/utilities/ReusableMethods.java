@@ -32,6 +32,13 @@ public class ReusableMethods {
                 .perform();
         Thread.sleep(bekleme);
     }
+    public static void ekranSagKaydirma(int xKoordinat,int yKoordinat,int wait,int mXkoordinat,int mYkoordinat,int bekleme) throws InterruptedException {
+        TouchAction touchAction=new TouchAction<>(Driver.getAndroidDriver());
+        touchAction.press(PointOption.point(xKoordinat,yKoordinat))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(wait)))
+                .moveTo(PointOption.point(mXkoordinat,mYkoordinat)).release().perform();
+        Thread.sleep(bekleme);
+    }
     public static void scrollWithUiScrollable(String elementText) {
         AndroidDriver driver = (AndroidDriver)  Driver.getAndroidDriver();
         driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + elementText + "\"))");
